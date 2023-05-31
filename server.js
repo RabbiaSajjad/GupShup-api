@@ -7,6 +7,7 @@ const cors = require("cors");
 // require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 3001;
 const db_name = process.env.DB_NAME || 'gupshup'
+const userRoutes = require('./routes/user.router');
 
 // To connect with your mongoDB database
 const mongoose = require("mongoose");
@@ -21,6 +22,8 @@ connection.once('open', function() {
 app.use(cors());
 
 app.use(express.json());
+app.use('/users', userRoutes);
+
 
 app.listen(port, () => {
   // Perform a database connection when server starts
